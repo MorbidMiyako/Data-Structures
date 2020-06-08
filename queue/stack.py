@@ -31,7 +31,6 @@ class Stack:
             return None
         else:
             deleted_item = self.storage[self.size-1]
-            print(deleted_item)
             self.storage.pop(self.size-1)
             self.size -= 1
             return deleted_item
@@ -44,28 +43,18 @@ from singly_linked_list import LinkedList
 class Stack(LinkedList):
     def __init__(self):
         self.size = 0
-        self.top_item = LinkedList()
+        self.storage = LinkedList()
 
     def __len__(self):
         return self.size
 
     def push(self, value):
-        self.top_item.add_to_tail(value)
         self.size += 1
-        return self.top_item.tail.get_value()
+        return self.storage.add_to_tail(value)
 
     def pop(self):
         if self.size is 0:
             return None
         else:
-            deleted_item = self.top_item.tail.get_value()
-            print(deleted_item)
-            self.top_item.remove_tail()
             self.size -= 1
-            return deleted_item
-
-
-stack = Stack()
-print(stack.push(10))
-print(stack.pop())
-print(stack.pop())
+            return self.storage.remove_tail()
